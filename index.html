@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJ 2Tuff — Bookings</title>
+  <meta name="description" content="DJ 2Tuff — nightlife, Greek events, birthdays, campus & private parties. Book now." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#070A0F;
+      --panel:rgba(255,255,255,.06);
+      --text:rgba(255,255,255,.93);
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.55);
+      --border:rgba(255,255,255,.12);
+      --blue:#00aaff;
+      --blue2:#1b6bff;
+      --shadow:0 20px 60px rgba(0,0,0,.55);
+      --radius:18px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(0,170,255,.22), transparent 60%),
+        radial-gradient(900px 500px at 20% 20%, rgba(27,107,255,.18), transparent 60%),
+        var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    /* NAV */
+    .nav{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter: blur(12px);
+      background: rgba(7,10,15,.70);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;white-space:nowrap}
+    .brand-dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 0 18px rgba(0,170,255,.6)}
+    .nav-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .nav-links a{
+      font-size:.92rem;opacity:.85;padding:8px 10px;border-radius:999px;border:1px solid transparent;transition:.12s ease;
+    }
+    .nav-links a:hover{opacity:1;border-color:var(--border);background:rgba(255,255,255,.05);transform:translateY(-1px)}
+
+    /* HERO */
+    .hero{padding:56px 0 24px}
+    .hero-card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-top{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      padding:24px;
+      position:relative;
+    }
+    @media(max-width:900px){.hero-top{grid-template-columns:1fr}}
+    .hero-top:before{
+      content:"";
+      position:absolute;inset:-2px;
+      background:
+        radial-gradient(650px 300px at 70% -10%, rgba(0,170,255,.32), transparent 60%),
+        radial-gradient(650px 300px at 10% 20%, rgba(27,107,255,.22), transparent 55%);
+      opacity:.75;pointer-events:none;
+    }
+
+    .logo-row{display:flex;align-items:center;gap:14px;margin-bottom:10px;position:relative}
+    /* LOGO PLACEMENT:
+       Upload your DJ logo to the repo root named exactly: logo.png
+       It will show here automatically. */
+    .logo-row img{
+      width:86px;height:auto;border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.25);
+      box-shadow: 0 0 28px rgba(0,170,255,.18);
+    }
+    .kicker{
+      font-weight:800;color:rgba(255,255,255,.92);
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      padding:6px 10px;border-radius:999px;
+      display:inline-flex;gap:8px;width:fit-content;margin-bottom:8px;
+    }
+    h1{margin:10px 0 10px;font-size:clamp(2rem,4vw,3.2rem);line-height:1.04;letter-spacing:-.6px}
+    .lead{margin:0 0 16px;color:var(--muted);max-width:70ch}
+    .pill-row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 18px}
+    .pill{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.04);font-size:.92rem;color:var(--muted)}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 16px;border-radius:12px;font-weight:700;
+      border:1px solid var(--border);background:rgba(255,255,255,.06);
+      transition:.12s ease;user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
+    .btn-primary{
+      border:none;color:#fff;
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      box-shadow:0 10px 30px rgba(0,170,255,.18);
+    }
+    .btn-primary:hover{opacity:.95}
+
+    .hero-img{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background: rgba(0,0,0,.25);
+      min-height: 260px;
+      position:relative;
+    }
+    /* HERO IMAGE:
+       Upload a photo named hero.jpg (you DJing). */
+    .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero-img .overlay{position:absolute;inset:0;background: linear-gradient(180deg, rgba(7,10,15,.15), rgba(7,10,15,.82))}
+    .hero-img .tag{
+      position:absolute;left:14px;bottom:14px;
+      background: rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.12);
+      padding:8px 12px;border-radius:999px;
+      color: rgba(255,255,255,.88);
+      font-weight:700;font-size:.92rem;
+    }
+
+    section{padding:34px 0}
+    .section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .section-title h2{margin:0;font-size:1.65rem;letter-spacing:-.2px}
+    .section-title p{margin:0;color:var(--muted2);max-width:60ch}
+    .grid{display:grid;gap:14px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background: rgba(255,255,255,.06);
+      padding:16px;
+      box-shadow:0 12px 40px rgba(0,0,0,.32);
+    }
+    .card h3{margin:0 0 8px;font-size:1.05rem}
+    .card p{margin:0;color:var(--muted);font-size:.95rem}
+
+    .mix-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:900px){.mix-row{grid-template-columns:1fr}}
+    .mix{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background: rgba(0,0,0,.25);
+      padding:16px;
+    }
+    .mix small{color:var(--muted2)}
+
+    .badge{
+      display:inline-block;font-size:.78rem;padding:6px 10px;border-radius:999px;
+      border:1px solid var(--border);background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.86);margin-bottom:8px;
+    }
+    .price{display:flex;align-items:baseline;gap:8px;margin:8px 0 10px}
+    .price strong{font-size:1.85rem;letter-spacing:-.5px}
+    .price small{color:var(--muted2)}
+    .list{margin:0;padding-left:18px;color:var(--muted);font-size:.95rem}
+
+    .form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:900px){.form{grid-template-columns:1fr}}
+    input, textarea, select{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.30);
+      color: var(--text);
+      outline: none;
+      font-size:.95rem;
+    }
+    textarea{min-height:130px;grid-column:1/-1;resize:vertical}
+    .form-actions{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap}
+
+    footer{padding:26px 0 40px;color:var(--muted2);border-top:1px solid var(--border);margin-top:24px}
+    .footer-row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-start}
+    .footer-row strong{color:rgba(255,255,255,.88)}
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <div class="brand"><span class="brand-dot"></span><span>DJ 2Tuff</span></div>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#mixes">Mixes</a>
+          <a href="#pricing">Rates</a>
+          <a href="#book">Book</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <div class="hero-top">
+          <div style="position:relative">
+            <div class="logo-row">
+              <img src="logo.png" alt="DJ 2Tuff Logo" onerror="this.style.display='none'">
+              <div>
+                <div class="kicker">🎧 High Energy • Clean Transitions • Crowd Control</div>
+                <div style="color:var(--muted)">Clubs • Greek • Birthdays • Campus • Private Parties</div>
+              </div>
+            </div>
+
+            <h1>DJ 2Tuff — Bookings Open</h1>
+            <p class="lead">
+              I bring the vibe and keep the room moving. If you need a DJ who can read the crowd,
+              switch genres fast, and make your event feel big — book me.
+            </p>
+
+            <div class="pill-row">
+              <span class="pill">Tallahassee / Orlando</span>
+              <span class="pill">Reels-ready moments</span>
+              <span class="pill">Professional setup</span>
+            </div>
+
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#book">Book DJ 2Tuff</a>
+              <a class="btn" href="https://instagram.com/YOUR_INSTAGRAM" target="_blank" rel="noopener">DM on Instagram</a>
+            </div>
+
+            <div class="helper">
+              Upload <strong>logo.png</strong> + <strong>hero.jpg</strong> to this repo (Add file → Upload files).
+            </div>
+          </div>
+
+          <div class="hero-img">
+            <img src="hero.jpg" alt="DJ 2Tuff performing" onerror="this.style.display='none'">
+            <div class="overlay"></div>
+            <div class="tag">Available for bookings</div>
+          </div>
+        </div>
+
+        <div style="padding:0 24px 24px">
+          <div class="grid grid-3">
+            <div class="card"><h3>🔥 Energy</h3><p>Afrobeats, Hip-Hop, R&B, Pop, Reggae/Dancehall, Throwbacks, Club hits.</p></div>
+            <div class="card"><h3>🧠 Crowd Reading</h3><p>I adjust in real-time so your event never gets stale.</p></div>
+            <div class="card"><h3>🎛️ Pro Setup</h3><p>Clear sound, organized workflow, and smooth transitions.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-title">
+        <div><h2>What I Offer</h2><p>Choose the vibe. I’ll bring the structure + energy.</p></div>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card"><h3>🏛️ Greek & Campus Events</h3><p>Stroll sets, party vibes, crowd control — clean all night.</p></div>
+        <div class="card"><h3>🍾 Clubs & Lounges</h3><p>High energy, fast switches, keeps the floor active.</p></div>
+        <div class="card"><h3>🎂 Birthdays & Private Parties</h3><p>Custom set for your crowd. You pick “must-play” songs.</p></div>
+        <div class="card"><h3>💍 Special Events</h3><p>Formals, celebrations, org events — clean + professional.</p></div>
+        <div class="card"><h3>🎤 Hosting / Hype</h3><p>Mic control when needed (moments, announcements).</p></div>
+        <div class="card"><h3>📹 Content Moments</h3><p>Reels-worthy builds, drops, and transitions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mixes">
+    <div class="wrap">
+      <div class="section-title">
+        <div><h2>Mixes</h2><p>Add your links later. Start with 2.</p></div>
+      </div>
+
+      <div class="mix-row">
+        <div class="mix">
+          <h3>Afrobeats / Dancehall Set</h3>
+          <small>10–20 min highlight mix</small>
+          <div style="margin-top:10px">
+            <a class="btn" href="https://YOUR_LINK_HERE" target="_blank" rel="noopener">Listen</a>
+          </div>
+        </div>
+        <div class="mix">
+          <h3>Club Hits / Throwbacks</h3>
+          <small>High energy transitions</small>
+          <div style="margin-top:10px">
+            <a class="btn" href="https://YOUR_LINK_HERE" target="_blank" rel="noopener">Listen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-title">
+        <div><h2>Rates</h2><p>Starting rates — quote based on crowd size, speakers, and travel.</p></div>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="badge">Starter</div>
+          <h3>Small Event</h3>
+          <div class="price"><strong>$150</strong> <small>starting</small></div>
+          <ul class="list">
+            <li>Up to 2 hours</li>
+            <li>Basic setup</li>
+            <li>Great for kickbacks</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-color: rgba(0,170,255,.35); background: rgba(0,170,255,.08);">
+          <div class="badge">Most Popular</div>
+          <h3>Party / Org Event</h3>
+          <div class="price"><strong>$250</strong> <small>starting</small></div>
+          <ul class="list">
+            <li>Up to 3 hours</li>
+            <li>MC moments if needed</li>
+            <li>Crowd-ready set</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="badge">Pro</div>
+          <h3>Club / Large Event</h3>
+          <div class="price"><strong>$400</strong> <small>starting</small></div>
+          <ul class="list">
+            <li>Up to 4 hours</li>
+            <li>High intensity set</li>
+            <li>Travel may apply</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="wrap">
+      <div class="section-title">
+        <div><h2>Book DJ 2Tuff</h2><p>Fill this out and I’ll respond within 24 hours.</p></div>
+      </div>
+
+      <div class="card">
+        <!-- Replace with your Formspree link (free) -->
+        <form class="form" action="https://formspree.io/f/xyzzzzzz" method="POST">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+
+          <input type="text" name="event_type" placeholder="Event type (club, birthday, org, etc.)" required>
+          <input type="text" name="date_time" placeholder="Date & time (ex: Jan 10, 10pm–2am)" required>
+
+          <input type="text" name="location" placeholder="Location (city + venue/address)" required>
+          <select name="duration" required>
+            <option value="" disabled selected>How long?</option>
+            <option>1–2 hours</option>
+            <option>2–3 hours</option>
+            <option>3–4 hours</option>
+            <option>4+ hours</option>
+          </select>
+
+          <textarea name="details" placeholder="Vibe + must-play songs + expected crowd size" required></textarea>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Send Booking Request</button>
+            <a class="btn" href="https://instagram.com/YOUR_INSTAGRAM" target="_blank" rel="noopener">DM Instead</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <div>
+          <strong>© <span id="year"></span> DJ 2Tuff</strong>
+          <div style="margin-top:6px;color:var(--muted2)">Bookings • Clubs • Campus • Private Parties</div>
+        </div>
+        <div>
+          <div><strong>Contact</strong></div>
+          <div style="margin-top:6px;">Instagram: <a href="https://instagram.com/YOUR_INSTAGRAM" target="_blank" rel="noopener">@YOUR_INSTAGRAM</a></div>
+          <div>Email: <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></div>
+          <div>Phone: <a href="tel:+1YOURNUMBER">YOUR_NUMBER</a></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
